@@ -56,7 +56,7 @@ Public Class Form1
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim dialog As New OpenFileDialog()
-        dialog.Filter = "3ds Rom|*.3ds"
+        dialog.Filter = "3ds Rom|*.3ds; *.3dz"
         If DialogResult.OK = dialog.ShowDialog Then
             filename = dialog.FileName
             txtRom.Text = filename
@@ -148,13 +148,15 @@ Public Class Form1
                 show = show + rstring
                 counter += 1
             Loop
-            If show = "00000800" Then
+            If show = "00000400" Then
+                txtCap.Text = "128 MB"
+            ElseIf show = "00000800" Then
                 txtCap.Text = "256 MB"
             ElseIf show = "00001000" Then
                 txtCap.Text = "512 MB"
-            ElseIf show = "00000200" Then
+            ElseIf show = "00002000" Then
                 txtCap.Text = "1 GB"
-            ElseIf show = "00000400" Then
+            ElseIf show = "00004000" Then
                 txtCap.Text = "2 GB"
             ElseIf show = "00008000" Then
                 txtCap.Text = "4 GB"

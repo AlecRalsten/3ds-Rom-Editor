@@ -486,7 +486,7 @@ Partial Class Form1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "3ds Rom Editor v0.5"
+        Me.Text = "3ds Rom Editor v1.0"
         Me.groupheader.ResumeLayout(False)
         Me.groupheader.PerformLayout()
         Me.GroupOp.ResumeLayout(False)

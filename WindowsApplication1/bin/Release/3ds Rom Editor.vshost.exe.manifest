@@ -4,7 +4,7 @@
   <description asmv2:iconFile="overview_0001_backward-compat.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="3ds Rom Editor" version="0.3.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="3ds Rom Editor" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="3ds Rom Editor.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -44,13 +44,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="3ds Rom Editor.exe" size="142848">
-      <assemblyIdentity name="3ds Rom Editor" version="0.3.0.0" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="3ds Rom Editor" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>j7EoP7rrf8Fcgc9FI7xytRWHIsG8aJgZEjiofWM036U=</dsig:DigestValue>
+        <dsig:DigestValue>J2I0JtbZEC2IjGt5kDCaTmSmFYSCuaNzOsDy/E0cpyE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

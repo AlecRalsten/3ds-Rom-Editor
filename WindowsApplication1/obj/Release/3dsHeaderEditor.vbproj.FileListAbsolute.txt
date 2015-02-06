@@ -14,9 +14,6 @@ C:\Users\Aliak\documents\visual studio 2013\Projects\WindowsApplication1\Windows
 C:\Users\Aliak\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Release\3ds Rom Editor.xml
 C:\Users\Aliak\documents\visual studio 2013\Projects\WindowsApplication1\WindowsApplication1\obj\Release\3ds Rom Editor.pdb
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe.config
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.exe
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.xml
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.pdb
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe.manifest
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.application
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe
@@ -28,5 +25,6 @@ C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\R
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3dsHeaderEditor.vbproj.GenerateResource.Cache
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.exe.manifest
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.application
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe.CodeAnalysisLog.xml
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe.lastcodeanalysissucceeded
+C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.exe
+C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.xml
+C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.pdb

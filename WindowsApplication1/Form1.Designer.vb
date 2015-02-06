@@ -114,7 +114,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 32)
+        Me.Label1.Location = New System.Drawing.Point(6, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 13)
         Me.Label1.TabIndex = 34
@@ -123,7 +123,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 76)
+        Me.Label2.Location = New System.Drawing.Point(5, 79)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(45, 13)
         Me.Label2.TabIndex = 35
@@ -295,7 +295,7 @@ Partial Class Form1
         'lblcom
         '
         Me.lblcom.AutoSize = True
-        Me.lblcom.Location = New System.Drawing.Point(341, 45)
+        Me.lblcom.Location = New System.Drawing.Point(346, 45)
         Me.lblcom.Name = "lblcom"
         Me.lblcom.Size = New System.Drawing.Size(78, 13)
         Me.lblcom.TabIndex = 5
@@ -323,7 +323,7 @@ Partial Class Form1
         'lblcom2
         '
         Me.lblcom2.AutoSize = True
-        Me.lblcom2.Location = New System.Drawing.Point(55, 45)
+        Me.lblcom2.Location = New System.Drawing.Point(56, 45)
         Me.lblcom2.Name = "lblcom2"
         Me.lblcom2.Size = New System.Drawing.Size(78, 13)
         Me.lblcom2.TabIndex = 4
@@ -393,7 +393,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(20, 50)
+        Me.Label4.Location = New System.Drawing.Point(20, 46)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(67, 13)
         Me.Label4.TabIndex = 1
@@ -402,7 +402,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(20, 81)
+        Me.Label5.Location = New System.Drawing.Point(17, 78)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(70, 13)
         Me.Label5.TabIndex = 2
@@ -436,7 +436,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(235, 50)
+        Me.Label3.Location = New System.Drawing.Point(243, 50)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(51, 13)
         Me.Label3.TabIndex = 8
@@ -486,7 +486,7 @@ Partial Class Form1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "3ds Rom Editor v1.0"
+        Me.Text = "3ds Rom Editor v1.1"
         Me.groupheader.ResumeLayout(False)
         Me.groupheader.PerformLayout()
         Me.GroupOp.ResumeLayout(False)

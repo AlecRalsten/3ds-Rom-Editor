@@ -14,6 +14,9 @@ Public Class Form1
     Dim genCheck As Boolean
 
     Private Sub btnUid_Click(sender As Object, e As EventArgs) Handles btnUid.Click
+        Writefile()
+    End Sub
+    Private Sub Writefile()
         combineText()
 
         Dim b((wstring.Length \ 2) - 1) As Byte
@@ -60,6 +63,8 @@ Public Class Form1
         If DialogResult.OK = dialog.ShowDialog Then
             filename = dialog.FileName
             txtRom.Text = filename
+            lblcom.Visible = False
+            lblcom2.Visible = False
             GetRomInfo()
             groupheader.Enabled = True
             GroupOp.Enabled = True
@@ -224,6 +229,7 @@ Public Class Form1
             Loop
             readfile.Dispose()
         End Using
+
         If genCheck = False Then
             Using readfile2 As New IO.FileStream(headerfile, IO.FileMode.Open)
 
@@ -262,6 +268,22 @@ Public Class Form1
                 value = readfile.ReadByte()
                 If rstring = "FF" Then
                     MsgBox("No ID in Rom")
+                    txtUid1.Text = "00"
+                    txtUid2.Text = "00"
+                    txtUid3.Text = "00"
+                    txtUid4.Text = "00"
+                    txtUid5.Text = "00"
+                    txtUid6.Text = "00"
+                    txtUid7.Text = "00"
+                    txtUid8.Text = "00"
+                    txtUid9.Text = "00"
+                    txtUid10.Text = "00"
+                    txtUid11.Text = "00"
+                    txtUid12.Text = "00"
+                    txtUid13.Text = "00"
+                    txtUid14.Text = "00"
+                    txtUid15.Text = "00"
+                    txtUid16.Text = "00"
                     counter = 16
                 Else
                     Select Case counter
@@ -318,42 +340,46 @@ Public Class Form1
         dialog.Filter = "Rom Header|*.bin"
         If DialogResult.OK = dialog.ShowDialog Then
             filename2 = dialog.FileName
+
+            Dim b((wstring.Length \ 2) - 1) As Byte
+            'convert to bytes  
+            Dim idx As Integer = 0
+            For x As Integer = 0 To wstring.Length - 1 Step 2
+                b(idx) = Convert.ToByte(wstring.Substring(x, 2), 16)
+                idx += 1
+            Next
+
+            WriteBin(&H0, filename2, b)
+
+
+            Dim b2((wstring3.Length \ 2) - 1) As Byte
+            'convert to bytes  
+            Dim idx2 As Integer = 0
+            For x As Integer = 0 To wstring3.Length - 1 Step 2
+                b2(idx2) = Convert.ToByte(wstring3.Substring(x, 2), 16)
+                idx2 += 1
+            Next
+
+            WriteBin(&H10, filename2, b2)
+            WriteBin(&H20, filename2, b2)
+            WriteBin(&H30, filename2, b2)
+
+            Dim b3((wstring2.Length \ 2) - 1) As Byte
+            'convert to bytes  
+            Dim idx3 As Integer = 0
+            For x2 As Integer = 0 To wstring2.Length - 1 Step 2
+                b3(idx3) = Convert.ToByte(wstring2.Substring(x2, 2), 16)
+                idx3 += 1
+            Next
+
+            WriteBin(&H40, filename2, b3)
+
+            lblcom2.Visible = True
+        Else
+            Me.Refresh()
         End If
 
-        Dim b((wstring.Length \ 2) - 1) As Byte
-        'convert to bytes  
-        Dim idx As Integer = 0
-        For x As Integer = 0 To wstring.Length - 1 Step 2
-            b(idx) = Convert.ToByte(wstring.Substring(x, 2), 16)
-            idx += 1
-        Next
-
-        WriteBin(&H0, filename2, b)
-
-
-        Dim b2((wstring3.Length \ 2) - 1) As Byte
-        'convert to bytes  
-        Dim idx2 As Integer = 0
-        For x As Integer = 0 To wstring3.Length - 1 Step 2
-            b2(idx2) = Convert.ToByte(wstring3.Substring(x, 2), 16)
-            idx2 += 1
-        Next
-
-        WriteBin(&H10, filename2, b2)
-        WriteBin(&H20, filename2, b2)
-        WriteBin(&H30, filename2, b2)
-
-        Dim b3((wstring2.Length \ 2) - 1) As Byte
-        'convert to bytes  
-        Dim idx3 As Integer = 0
-        For x2 As Integer = 0 To wstring2.Length - 1 Step 2
-            b3(idx3) = Convert.ToByte(wstring2.Substring(x2, 2), 16)
-            idx3 += 1
-        Next
-
-        WriteBin(&H40, filename2, b3)
-
-        lblcom2.Visible = True
+        
     End Sub
 
     Private Sub comMan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comMan.SelectedIndexChanged

@@ -387,6 +387,7 @@ Partial Class Form1
         '
         Me.txtSer.Location = New System.Drawing.Point(93, 43)
         Me.txtSer.Name = "txtSer"
+        Me.txtSer.ReadOnly = True
         Me.txtSer.Size = New System.Drawing.Size(119, 20)
         Me.txtSer.TabIndex = 6
         '
@@ -413,6 +414,7 @@ Partial Class Form1
         Me.txtMainTitle.Location = New System.Drawing.Point(93, 74)
         Me.txtMainTitle.Multiline = True
         Me.txtMainTitle.Name = "txtMainTitle"
+        Me.txtMainTitle.ReadOnly = True
         Me.txtMainTitle.Size = New System.Drawing.Size(119, 20)
         Me.txtMainTitle.TabIndex = 7
         '
@@ -420,6 +422,7 @@ Partial Class Form1
         '
         Me.txtCardT.Location = New System.Drawing.Point(300, 78)
         Me.txtCardT.Name = "txtCardT"
+        Me.txtCardT.ReadOnly = True
         Me.txtCardT.Size = New System.Drawing.Size(56, 20)
         Me.txtCardT.TabIndex = 11
         Me.txtCardT.Tag = ""
@@ -446,6 +449,7 @@ Partial Class Form1
         '
         Me.txtCap.Location = New System.Drawing.Point(300, 47)
         Me.txtCap.Name = "txtCap"
+        Me.txtCap.ReadOnly = True
         Me.txtCap.Size = New System.Drawing.Size(56, 20)
         Me.txtCap.TabIndex = 10
         Me.txtCap.Tag = ""
@@ -486,7 +490,7 @@ Partial Class Form1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "3ds Rom Editor v1.1"
+        Me.Text = "3ds Rom Editor v1.1.1"
         Me.groupheader.ResumeLayout(False)
         Me.groupheader.PerformLayout()
         Me.GroupOp.ResumeLayout(False)

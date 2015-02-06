@@ -169,6 +169,30 @@ Public Class Form1
             readfile.Dispose()
         End Using
 
+        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+            readfile.Seek(&H1240, SeekOrigin.Current)
+            Dim value As Integer = readfile.ReadByte()
+            Dim counter As Integer = 0
+            Dim id As String = ""
+
+            Do Until counter = 1
+                rstring = value.ToString("X2")
+                value = readfile.ReadByte()
+
+                id = id + rstring
+                counter += 1
+            Loop
+            txtCard1.Text = id
+            readfile.Dispose()
+        End Using
+
+        If txtCard1.Text = "C2" Then
+            comMan.Text = "Macronix"
+        ElseIf txtCard1.Text = "45" Then
+            comMan.Text = "SanDisk"
+        ElseIf txtCard1.Text = "AE" Then
+            comMan.Text = "OKI Semiconductor"
+        End If
     End Sub
     Public Sub WriteRom(ByVal address As Long, ByVal fileName As String, ByVal data() As Byte)
         Dim writer As New IO.BinaryWriter(New IO.FileStream(fileName, IO.FileMode.Open, IO.FileAccess.Write))

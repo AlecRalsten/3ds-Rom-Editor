@@ -192,7 +192,7 @@ Public Class Header_editor
         writer.Write(data)
         writer.Dispose()
     End Sub
-    Public Sub ReadBin()
+    Public Sub ReadBin() ' Open .bin file to import data
         Using readfile As New IO.FileStream(headerfile, IO.FileMode.Open)
             readfile.Seek(&H0, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
@@ -339,6 +339,7 @@ Public Class Header_editor
         End Using
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        'Select .bin file to open
         Dim dialog As New OpenFileDialog()
         dialog.Filter = "Rom Header|*.bin"
         If DialogResult.OK = dialog.ShowDialog Then

@@ -112,21 +112,10 @@
       <DependentUpon>3ds_rom_editor.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Info.Designer.vb">
-      <DependentUpon>Info.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Info.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -138,12 +127,8 @@
     <EmbeddedResource Include="3ds_rom_editor.resx">
       <DependentUpon>3ds_rom_editor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Info.resx">
-      <DependentUpon>Info.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -180,10 +165,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ce22oqB.png" />
+    <Content Include="overview_0001_backward-compat.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="overview_0001_backward-compat.ico" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

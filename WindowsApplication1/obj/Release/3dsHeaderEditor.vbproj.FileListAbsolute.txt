@@ -19,7 +19,6 @@ C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.exe
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.pdb
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\bin\Release\3ds Rom Editor.xml
-C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\RomEditor.Info.resources
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\RomEditor.Resources.resources
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3dsHeaderEditor.vbproj.GenerateResource.Cache
 C:\Users\Aliak\Documents\GitHub\3ds Rom Editor\WindowsApplication1\obj\Release\3ds Rom Editor.exe.manifest

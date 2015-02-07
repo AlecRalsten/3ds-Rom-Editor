@@ -105,11 +105,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="3ds_rom_editor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="3ds_rom_editor.Designer.vb">
+      <DependentUpon>3ds_rom_editor.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Info.Designer.vb">
@@ -135,8 +135,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="3ds_rom_editor.resx">
+      <DependentUpon>3ds_rom_editor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Info.resx">
       <DependentUpon>Info.vb</DependentUpon>

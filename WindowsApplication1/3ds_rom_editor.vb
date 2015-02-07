@@ -1,22 +1,14 @@
 ﻿Imports System.IO
 
-Public Class Form1
-
-    Dim filename As String
-    Dim filename2 As String
-    Dim headerfile As String
-    Dim savefile As String
-    Dim rstring As String
-    Dim wstring As String
-    Dim wstring2 As String
+Public Class Header_editor
+    'Declare global variables
+    Dim filename, filename2, headerfile, savefile, rstring, wstring, wstring2, wstring4 As String
     Dim wstring3 As String = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
-    Dim wstring4 As String = "FFFFFFFFFFFFFFFF"
     Dim genCheck As Boolean
-
     Private Sub btnUid_Click(sender As Object, e As EventArgs) Handles btnUid.Click
         Writefile()
     End Sub
-    Private Sub Writefile()
+    Private Sub Writefile() 'Prepare data to write to the 3ds rom file
         combineText()
 
         Dim b((wstring.Length \ 2) - 1) As Byte
@@ -26,7 +18,7 @@ Public Class Form1
             b(idx) = Convert.ToByte(wstring.Substring(x, 2), 16)
             idx += 1
         Next
-
+        '1200 is the ofset in the rom we are writing to
         WriteRom(&H1200, filename, b)
 
         Dim b2((wstring3.Length \ 2) - 1) As Byte
@@ -37,9 +29,9 @@ Public Class Form1
             idx2 += 1
         Next
 
-        WriteBin(&H1210, filename, b2)
-        WriteBin(&H1220, filename, b2)
-        WriteBin(&H1230, filename, b2)
+        WriteRom(&H1210, filename, b2)
+        WriteRom(&H1220, filename, b2)
+        WriteRom(&H1230, filename, b2)
 
         Dim b3((wstring2.Length \ 2) - 1) As Byte
         'convert to bytes  
@@ -53,12 +45,12 @@ Public Class Form1
 
         lblcom.Visible = True
     End Sub
-    Private Sub combineText()
+    Private Sub combineText() 'Cobine text feilds for writing as bianary data 
         wstring = txtUid1.Text + txtUid2.Text + txtUid3.Text + txtUid4.Text + txtUid5.Text + txtUid6.Text + txtUid7.Text + txtUid8.Text + txtUid9.Text + txtUid10.Text + txtUid11.Text + txtUid12.Text + txtUid13.Text + txtUid14.Text + txtUid15.Text + txtUid16.Text
         wstring2 = txtCard1.Text + txtCard2.Text + txtCard3.Text + txtCard4.Text + "00000000" + wstring4
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim dialog As New OpenFileDialog()
+        Dim dialog As New OpenFileDialog() 'select file to load
         dialog.Filter = "3ds Rom|*.3ds; *.3dz"
         If DialogResult.OK = dialog.ShowDialog Then
             filename = dialog.FileName
@@ -72,8 +64,7 @@ Public Class Form1
             ReadRom()
         End If
     End Sub
-
-    Private Sub GenChipID()
+    Private Sub GenChipID() 'Generate and fix chipID
         If txtCap.Text = "128 MB" Then
             txtCard2.Text = "7F"
         ElseIf txtCap.Text = "256 MB" Then
@@ -96,8 +87,8 @@ Public Class Form1
         genCheck = True
     End Sub
     Private Sub GetRomInfo()
-        Dim reader As New IO.BinaryReader(New IO.FileStream(filename, IO.FileMode.Open, IO.FileAccess.Read))
-        reader.BaseStream.Position = &H1150
+        Dim reader As New IO.BinaryReader(New IO.FileStream(filename, IO.FileMode.Open, IO.FileAccess.Read)) 'open file
+        reader.BaseStream.Position = &H1150 'Read from position "1150" in the file
         Dim c As String = reader.ReadChars(10)
         txtSer.Text = c
         reader.Dispose()
@@ -118,7 +109,7 @@ Public Class Form1
             txtMainTitle.Text = StrReverse(show)
             readfile.Dispose()
         End Using
-
+        'Finds the type of the Rom from the data at ofset "18D"
         Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
             readfile.Seek(&H18D, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
@@ -139,7 +130,7 @@ Public Class Form1
             End If
             readfile.Dispose()
         End Using
-
+        'Finds the size of the Rom from the data at ofset "104"
         Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
             readfile.Seek(&H104, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
@@ -153,6 +144,7 @@ Public Class Form1
                 show = show + rstring
                 counter += 1
             Loop
+
             If show = "00000400" Then
                 txtCap.Text = "128 MB"
             ElseIf show = "00000800" Then
@@ -168,7 +160,7 @@ Public Class Form1
             End If
             readfile.Dispose()
         End Using
-
+        'Finds the manufaturer of the flash chip from the data at ofset "1240"
         Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
             readfile.Seek(&H1240, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
@@ -194,13 +186,7 @@ Public Class Form1
             comMan.Text = "OKI Semiconductor"
         End If
     End Sub
-    Public Sub WriteRom(ByVal address As Long, ByVal fileName As String, ByVal data() As Byte)
-        Dim writer As New IO.BinaryWriter(New IO.FileStream(fileName, IO.FileMode.Open, IO.FileAccess.Write))
-        writer.BaseStream.Position = address
-        writer.Write(data)
-        writer.Dispose()
-    End Sub
-    Public Sub WriteBin(ByVal address As Long, ByVal fileName As String, ByVal data() As Byte)
+    Public Sub WriteRom(ByVal address As Long, ByVal fileName As String, ByVal data() As Byte) 'Writes the data to 3ds rom file
         Dim writer As New IO.BinaryWriter(New IO.FileStream(fileName, IO.FileMode.OpenOrCreate, IO.FileAccess.Write))
         writer.BaseStream.Position = address
         writer.Write(data)
@@ -286,10 +272,11 @@ Public Class Form1
             readfile.Seek(&H1200, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
-
+            'Check if there is a cardID in the rom
             Do Until counter = 16
                 rstring = value.ToString("X2")
                 value = readfile.ReadByte()
+                'If ther is no CardID, load all 0
                 If rstring = "FF" Then
                     MsgBox("No ID in Rom")
                     txtUid1.Text = "00"
@@ -310,6 +297,7 @@ Public Class Form1
                     txtUid16.Text = "00"
                     counter = 16
                 Else
+                    'If ther is a CardID, load it
                     Select Case counter
                         Case 0
                             txtUid1.Text = rstring
@@ -373,7 +361,7 @@ Public Class Form1
                 idx += 1
             Next
 
-            WriteBin(&H0, filename2, b)
+            WriteRom(&H0, filename2, b)
 
 
             Dim b2((wstring3.Length \ 2) - 1) As Byte
@@ -384,9 +372,9 @@ Public Class Form1
                 idx2 += 1
             Next
 
-            WriteBin(&H10, filename2, b2)
-            WriteBin(&H20, filename2, b2)
-            WriteBin(&H30, filename2, b2)
+            WriteRom(&H10, filename2, b2)
+            WriteRom(&H20, filename2, b2)
+            WriteRom(&H30, filename2, b2)
 
             Dim b3((wstring2.Length \ 2) - 1) As Byte
             'convert to bytes  
@@ -396,16 +384,15 @@ Public Class Form1
                 idx3 += 1
             Next
 
-            WriteBin(&H40, filename2, b3)
+            WriteRom(&H40, filename2, b3)
 
             lblcom2.Visible = True
         Else
             Me.Refresh()
         End If
 
-        
-    End Sub
 
+    End Sub
     Private Sub comMan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comMan.SelectedIndexChanged
         If comMan.Text = "Macronix" Then
             txtCard1.Text = "C2"
@@ -415,7 +402,6 @@ Public Class Form1
             txtCard1.Text = "AE"
         End If
     End Sub
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         comMan.SelectedIndex = "0"
     End Sub

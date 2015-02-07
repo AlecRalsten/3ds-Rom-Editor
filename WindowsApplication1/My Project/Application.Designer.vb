@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.RomEditor.Form1
+            Me.MainForm = Global.RomEditor.Header_editor
         End Sub
     End Class
 End Namespace

@@ -62,16 +62,17 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FD56CF2B8E54B095495B0CA22ABBA611EEA8E569</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>44ED956EB1AB9BB60054EC3234C00498BC23C475</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>3dsHeaderEditor_Key.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>overview_0001_backward-compat.ico</ApplicationIcon>
@@ -134,7 +135,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="3dsHeaderEditor_Key.pfx" />
+    <None Include="3dsHeaderEditor_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

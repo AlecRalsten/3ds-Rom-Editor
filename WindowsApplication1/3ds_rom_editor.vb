@@ -2,8 +2,8 @@
 
 Public Class Header_editor
     'Declare global variables
-    Dim filename, filename2, headerfile, savefile, rstring, wstring, wstring2, wstring4 As String
-    Dim wstring3 As String = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    Dim romFile, filename2, headerfile, savefile, rstring, writeS1, wstring2, wstring4 As String
+    Const wstring3 As String = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" 'Necessary to work
     Dim genCheck As Boolean
     Private Sub btnUid_Click(sender As Object, e As EventArgs) Handles btnUid.Click
         Writefile()
@@ -11,15 +11,15 @@ Public Class Header_editor
     Private Sub Writefile() 'Prepare data to write to the 3ds rom file
         combineText()
 
-        Dim b((wstring.Length \ 2) - 1) As Byte
+        Dim b((writeS1.Length \ 2) - 1) As Byte
         'convert to bytes  
         Dim idx As Integer = 0
-        For x As Integer = 0 To wstring.Length - 1 Step 2
-            b(idx) = Convert.ToByte(wstring.Substring(x, 2), 16)
+        For x As Integer = 0 To writeS1.Length - 1 Step 2
+            b(idx) = Convert.ToByte(writeS1.Substring(x, 2), 16)
             idx += 1
         Next
         '1200 is the ofset in the rom we are writing to
-        WriteRom(&H1200, filename, b)
+        WriteRom(&H1200, romFile, b)
 
         Dim b2((wstring3.Length \ 2) - 1) As Byte
         'convert to bytes  
@@ -29,9 +29,9 @@ Public Class Header_editor
             idx2 += 1
         Next
 
-        WriteRom(&H1210, filename, b2)
-        WriteRom(&H1220, filename, b2)
-        WriteRom(&H1230, filename, b2)
+        WriteRom(&H1210, romFile, b2)
+        WriteRom(&H1220, romFile, b2)
+        WriteRom(&H1230, romFile, b2)
 
         Dim b3((wstring2.Length \ 2) - 1) As Byte
         'convert to bytes  
@@ -41,20 +41,20 @@ Public Class Header_editor
             idx3 += 1
         Next
 
-        WriteRom(&H1240, filename, b3)
+        WriteRom(&H1240, romFile, b3)
 
         lblcom.Visible = True
     End Sub
-    Private Sub combineText() 'Cobine text feilds for writing as bianary data 
-        wstring = txtUid1.Text + txtUid2.Text + txtUid3.Text + txtUid4.Text + txtUid5.Text + txtUid6.Text + txtUid7.Text + txtUid8.Text + txtUid9.Text + txtUid10.Text + txtUid11.Text + txtUid12.Text + txtUid13.Text + txtUid14.Text + txtUid15.Text + txtUid16.Text
+    Private Sub combineText() 'Combine text feilds for writing as bianary data 
+        writeS1 = txtUid1.Text + txtUid2.Text + txtUid3.Text + txtUid4.Text + txtUid5.Text + txtUid6.Text + txtUid7.Text + txtUid8.Text + txtUid9.Text + txtUid10.Text + txtUid11.Text + txtUid12.Text + txtUid13.Text + txtUid14.Text + txtUid15.Text + txtUid16.Text
         wstring2 = txtCard1.Text + txtCard2.Text + txtCard3.Text + txtCard4.Text + "00000000" + wstring4
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim dialog As New OpenFileDialog() 'select file to load
         dialog.Filter = "3ds Rom|*.3ds; *.3dz"
         If DialogResult.OK = dialog.ShowDialog Then
-            filename = dialog.FileName
-            txtRom.Text = filename
+            romFile = dialog.FileName
+            txtRom.Text = romFile
             lblcom.Visible = False
             lblcom2.Visible = False
             GetRomInfo()
@@ -87,13 +87,13 @@ Public Class Header_editor
         genCheck = True
     End Sub
     Private Sub GetRomInfo()
-        Dim reader As New IO.BinaryReader(New IO.FileStream(filename, IO.FileMode.Open, IO.FileAccess.Read)) 'open file
+        Dim reader As New IO.BinaryReader(New IO.FileStream(romFile, IO.FileMode.Open, IO.FileAccess.Read)) 'open file
         reader.BaseStream.Position = &H1150 'Read from position "1150" in the file
         Dim c As String = reader.ReadChars(10)
         txtSer.Text = c
         reader.Dispose()
 
-        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+        Using readfile As New IO.FileStream(romFile, IO.FileMode.Open)
             readfile.Seek(&H108, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
@@ -110,7 +110,7 @@ Public Class Header_editor
             readfile.Dispose()
         End Using
         'Finds the type of the Rom from the data at ofset "18D"
-        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+        Using readfile As New IO.FileStream(romFile, IO.FileMode.Open)
             readfile.Seek(&H18D, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
@@ -131,7 +131,7 @@ Public Class Header_editor
             readfile.Dispose()
         End Using
         'Finds the size of the Rom from the data at ofset "104"
-        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+        Using readfile As New IO.FileStream(romFile, IO.FileMode.Open)
             readfile.Seek(&H104, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
@@ -161,7 +161,7 @@ Public Class Header_editor
             readfile.Dispose()
         End Using
         'Finds the manufaturer of the flash chip from the data at ofset "1240"
-        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+        Using readfile As New IO.FileStream(romFile, IO.FileMode.Open)
             readfile.Seek(&H1240, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
@@ -268,7 +268,7 @@ Public Class Header_editor
         End If
     End Sub
     Public Sub ReadRom()
-        Using readfile As New IO.FileStream(filename, IO.FileMode.Open)
+        Using readfile As New IO.FileStream(romFile, IO.FileMode.Open)
             readfile.Seek(&H1200, SeekOrigin.Current)
             Dim value As Integer = readfile.ReadByte()
             Dim counter As Integer = 0
@@ -354,11 +354,11 @@ Public Class Header_editor
         If DialogResult.OK = dialog.ShowDialog Then
             filename2 = dialog.FileName
 
-            Dim b((wstring.Length \ 2) - 1) As Byte
+            Dim b((writeS1.Length \ 2) - 1) As Byte
             'convert to bytes  
             Dim idx As Integer = 0
-            For x As Integer = 0 To wstring.Length - 1 Step 2
-                b(idx) = Convert.ToByte(wstring.Substring(x, 2), 16)
+            For x As Integer = 0 To writeS1.Length - 1 Step 2
+                b(idx) = Convert.ToByte(writeS1.Substring(x, 2), 16)
                 idx += 1
             Next
 
